@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies (if any)
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Install package (editable mode if applicable)
+        run: |
+          if [ -f setup.py ] || [ -f pyproject.toml ]; then
+            pip install -e .
+          fi
+
+      - name: CI placeholder
+        run: echo "CI pipeline is running correctly."
