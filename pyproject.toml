@@ -15,3 +15,6 @@ dependencies = []
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.scripts]
+ros2-debug = "ros2_debug_assistant.cli:main"
